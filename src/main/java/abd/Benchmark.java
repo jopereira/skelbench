@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class Benchmark extends Thread {
@@ -51,8 +52,16 @@ public class Benchmark extends Thread {
                 boolean success = true;
                 try {
                     Workload.transaction(rand, c);
-                } catch(Exception e) {
-                    success = false;
+                } catch(SQLException e) {
+                    // check if it is an isolation-related exception
+                    // make sure other exceptions are shown
+                    if (e.getSQLState().startsWith("40")) {
+                        try {
+                            c.rollback();
+                        } catch(Exception e2) { }
+                        success = false;
+                    } else
+                        throw e;
                 } finally {
                     long after = System.nanoTime();
                     logTransaction(after - before, success);
