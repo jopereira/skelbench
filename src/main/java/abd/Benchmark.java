@@ -47,11 +47,12 @@ public class Benchmark extends Thread {
     public void run() {
         try {
             Connection c = DriverManager.getConnection(options.database, options.user, options.passwd);
+            Workload wl = new Workload(rand, c);
             while(!isStopped()) {
                 long before = System.nanoTime();
                 boolean success = true;
                 try {
-                    Workload.transaction(rand, c);
+                    wl.transaction();
                 } catch(SQLException e) {
                     // check if it is an isolation-related exception
                     // make sure other exceptions are shown

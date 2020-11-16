@@ -18,7 +18,20 @@ public class Workload {
         s.close();
     }
 
-    public static void transaction(Random rand, Connection c) throws Exception {
+    private final Random rand;
+    private final Connection c;
+
+    public Workload(Random rand, Connection c) throws Exception {
+        this.rand = rand;
+        this.c = c;
+
+        //---- DEMO WORKLOAD ----
+        // initialize connection, e.g. c.setAutoCommit(false);
+        // or create prepared statements...
+        //-----------------------
+    }
+
+    public void transaction() throws Exception {
         Statement s = c.createStatement();
 
         //---- DEMO WORKLOAD ----
