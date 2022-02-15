@@ -11,7 +11,7 @@ Edit Workload.java and add your workload.
 
 Run Benchmark.main() with arguments such as:
 
-    -d jdbc:posgtresql://localhost/mydb -U myuser -P mypass -p -x
+    -d jdbc:postgresql://localhost/mydb -U myuser -P mypass -p -x
     
 See Options.java for all options and defaults.
 
@@ -23,6 +23,6 @@ Build with Maven:
     
 Run self-contained jar file with arguments such as:
 
-    java -jar target/benchmark-1.0-SNAPSHOT.jar -d jdbc:posgtresql://localhost/mydb -U myuser -P mypass -p -x
+    java -jar target/benchmark-1.0-SNAPSHOT.jar -d jdbc:postgresql://localhost/mydb -U myuser -P mypass -p -x
  
 Use `--help` to list all options and defaults.
