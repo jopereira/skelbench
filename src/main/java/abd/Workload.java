@@ -11,7 +11,7 @@ public class Workload {
 
         //---- DEMO WORKLOAD ----
         // replace with your workload!
-        s.executeUpdate("create table demo (a int, b varchar, c int)");
+        s.executeUpdate("create table if not exists demo (a int, b varchar, c int)");
         s.executeUpdate("insert into demo values (1, 'one',0)");
         //-----------------------
 
